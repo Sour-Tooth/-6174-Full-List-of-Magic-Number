@@ -16,14 +16,16 @@ def createAMagicNumber():
             return magicNumber
     
 def takeAStep(numberToStep):
-    lowToHi = ''.join(sorted(myMagicNumber))
+    lowToHi = ''.join(sorted(numberToStep))
     print(f"Your magicNumber organized from low-high is: {lowToHi}")
 
-    hiToLow = ''.join(sorted(myMagicNumber, reverse = True))
+    hiToLow = ''.join(sorted(numberToStep, reverse = True))
     print(f"Your magicNumber organized from high-low is: {hiToLow}")
 
     result = str(int(hiToLow) - int(lowToHi))
     print(f"Your magicNumber moved one step through the process is: {result}")
+
+def stepUntilGoalReached(numberToStep):
 
 myMagicNumber = createAMagicNumber()
 takeAStep(myMagicNumber)
