@@ -1,26 +1,15 @@
-cycles = 0
-magicNumber = 1234
+import random
 
-while magicNumber <= 9999:
-    magicNumber = 1000 + cycles
+def getMagicNumber():
+    numberFound = False
 
-    def removeDuplicatesFromString(string):
-        result = ''
-        for character in string:
-            if not(character in result):
-                result = result + character
-        
-        return result
+    while numberFound == False:
+        magicNumber = [random.randint(0, 9), random.randint(0, 9), random.randint(0, 9), random.randint(0, 9) ]
 
-    def isAMagicNumber(number):
-        string = str(number)
-
-        if len(string) == len(removeDuplicatesFromString(string)):
-            return True
+        if len(magicNumber) == len(set(magicNumber)):
+            return magicNumber
         else:
-            return False
-
-    if isAMagicNumber(magicNumber):
-        print(magicNumber)
-
-    cycles += 1 
+            numberFound = False
+    
+myMagicNumber = getMagicNumber()
+print(myMagicNumber)
