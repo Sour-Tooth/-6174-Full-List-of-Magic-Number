@@ -1,11 +1,14 @@
-import xlwt 
-from xlwt import Workbook 
+from openpyxl import Workbook
+wb = Workbook()
 
-# Workbook is created 
-wb = Workbook() 
-  
-# add_sheet is used to create sheet. 
-sheet1 = wb.add_sheet('Magic Numbers') 
+# use the worsheet
+ws = wb.active
+
+# Data can be assigned directly to cells
+ws['A1'] = 42
+
+# Rows can be appended
+ws.append([1, 2])
 
 cycles = 0
 magicNumber = 1234
@@ -41,7 +44,7 @@ def stepUntilGoalReached(numberToStep):
         step += 1
     
     print(f"Your magicNumber {magicNumber} took {step} steps to reach 6174.")
-    sheet1.write(step, information[step], f"{magicNumber}") 
+    ws.cell(row=3, column=step).value = "test"
 
     information[step] += 1
 
@@ -57,5 +60,5 @@ while magicNumber <= 9999:
 
 print(information)
 
-# Saves the workbook as a file
-wb.save('xlwt example.xls') 
+# Save the file
+wb.save("sample.xlsx")
