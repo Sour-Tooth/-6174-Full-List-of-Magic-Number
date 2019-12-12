@@ -4,12 +4,6 @@ wb = Workbook()
 # use the worsheet
 ws = wb.active
 
-# Data can be assigned directly to cells
-ws['A1'] = 42
-
-# Rows can be appended
-ws.append([1, 2])
-
 cycles = 0
 magicNumber = 1234
 
@@ -35,18 +29,17 @@ def takeAStep(numberToStep):
     result = str(int(hiToLow) - int(lowToHi))
     return result    
 
-information = [0,0,0,0,0,0,0,0]
+information = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 def stepUntilGoalReached(numberToStep):
-    step = 0
+    step = 1
     while numberToStep != '6174':
         numberToStep = takeAStep(numberToStep)
         step += 1
     
     print(f"Your magicNumber {magicNumber} took {step} steps to reach 6174.")
-    ws.cell(row=3, column=step).value = "test"
-
     information[step] += 1
+    ws.cell(row=information[step], column=step).value = f"{magicNumber}"
 
     return numberToStep
 
