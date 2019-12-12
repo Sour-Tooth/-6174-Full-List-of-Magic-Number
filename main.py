@@ -23,6 +23,7 @@ def takeAStep(numberToStep):
     result = str(int(hiToLow) - int(lowToHi))
     return result
 
+information = [0,0,0,0,0,0,0,0]
 def stepUntilGoalReached(numberToStep):
     step = 0
     while numberToStep != '6174':
@@ -30,6 +31,8 @@ def stepUntilGoalReached(numberToStep):
         step += 1
     
     print(f"Your magicNumber {magicNumber} took {step} steps to reach 6174.")
+
+    information[step] += 1
 
     return numberToStep
 
@@ -40,3 +43,5 @@ while magicNumber <= 9999:
         stepUntilGoalReached(str(magicNumber))
 
     cycles += 1 
+
+print(information)
