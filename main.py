@@ -18,7 +18,7 @@ def removeDuplicatesFromString(string):
 def isAMagicNumber(number):
     string = str(number)
 
-    if len(string) == len(removeDuplicatesFromString(string)):
+    if len(string) == len(removeDuplicatesFromString(string)) + 1:
         return True
     else:
         return False
@@ -29,17 +29,17 @@ def takeAStep(numberToStep):
     result = str(int(hiToLow) - int(lowToHi))
     return result    
 
-information = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+information = [0, 0, 0, 0, 0, 0, 0, 0]
 
 def stepUntilGoalReached(numberToStep):
-    step = 1
+    step = 0
     while numberToStep != '6174':
         numberToStep = takeAStep(numberToStep)
         step += 1
     
     print(f"Your magicNumber {magicNumber} took {step} steps to reach 6174.")
     information[step] += 1
-    ws.cell(row=information[step], column=step).value = f"{magicNumber}"
+    ws.cell(row=information[step], column=step + 1).value = f"{magicNumber}"
 
     return numberToStep
 
@@ -54,4 +54,4 @@ while magicNumber <= 9999:
 print(information)
 
 # Save the file
-wb.save("sample.xlsx")
+wb.save("AllTheMagicNumbers.xlsx")
