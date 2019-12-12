@@ -25,5 +25,16 @@ def takeAStep(numberToStep):
     result = str(int(hiToLow) - int(lowToHi))
     print(f"Your magicNumber moved one step through the process is: {result}")
 
+    return result
+
+def stepUntilGoalReached(numberToStep):
+    step = 0
+    while numberToStep != '6174':
+        numberToStep = takeAStep(numberToStep)
+        step += 1
+        print(f"Your number at step {step} is: {numberToStep}")
+
+    return numberToStep
+        
 myMagicNumber = createAMagicNumber()
-takeAStep(myMagicNumber)
+myMagicNumber = stepUntilGoalReached(myMagicNumber)
