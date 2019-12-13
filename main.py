@@ -18,7 +18,7 @@ def removeDuplicatesFromString(string):
 def isAMagicNumber(number):
     string = str(number)
 
-    if len(string) == len(removeDuplicatesFromString(string)) + 1:
+    if len(removeDuplicatesFromString(string)) >= 2 and len(string) == 4:
         return True
     else:
         return False
@@ -26,8 +26,13 @@ def isAMagicNumber(number):
 def takeAStep(numberToStep):
     lowToHi = ''.join(sorted(numberToStep))
     hiToLow = ''.join(sorted(numberToStep, reverse = True))
+    lowToHi.replace('0', '')
+
     result = str(int(hiToLow) - int(lowToHi))
-    return result    
+    while len(result) != 4:
+        result = result + '0'
+
+    return result
 
 information = [0, 0, 0, 0, 0, 0, 0, 0]
 
