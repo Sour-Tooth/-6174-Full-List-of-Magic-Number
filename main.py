@@ -7,6 +7,16 @@ ws = wb.active
 cycles = 0
 magicNumber = 1234
 
+"""
+    if len(removeDuplicatesFromString(string)) >= 2 and len(string) == 4:
+
+    lowToHi.replace('0', '')
+
+    result = str(int(hiToLow) - int(lowToHi))
+    while len(result) != 4:
+        result = result + '0'
+"""
+
 def removeDuplicatesFromString(string):
     result = ''
     for character in string:
@@ -18,7 +28,7 @@ def removeDuplicatesFromString(string):
 def isAMagicNumber(number):
     string = str(number)
 
-    if len(removeDuplicatesFromString(string)) >= 2 and len(string) == 4:
+    if len(string) <= len(removeDuplicatesFromString(string)) + 2:
         return True
     else:
         return False
@@ -26,13 +36,15 @@ def isAMagicNumber(number):
 def takeAStep(numberToStep):
     lowToHi = ''.join(sorted(numberToStep))
     hiToLow = ''.join(sorted(numberToStep, reverse = True))
+    result = str(int(hiToLow) - int(lowToHi))
     lowToHi.replace('0', '')
 
     result = str(int(hiToLow) - int(lowToHi))
     while len(result) != 4:
         result = result + '0'
 
-    return result
+    print(result)
+    return result    
 
 information = [0, 0, 0, 0, 0, 0, 0, 0]
 
@@ -48,7 +60,7 @@ def stepUntilGoalReached(numberToStep):
 
     return numberToStep
 
-while magicNumber <= 9999:
+while magicNumber <= 7000:
     magicNumber = 1000 + cycles 
 
     if isAMagicNumber(magicNumber):
