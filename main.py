@@ -1,21 +1,19 @@
 from openpyxl import Workbook
-wb = Workbook()
+#from collections import Counter
+import collections
 
+magicNumber = 1234
+cycles = 0
+information = [0, 0, 0, 0, 0, 0, 0, 0]
+stepInfo = []
+
+wb = Workbook()
 # use the worsheet
 ws = wb.active
 
-cycles = 0
-magicNumber = 1234
+wb.create_sheet('Numbers Found During Steps')
 
-"""
-    if len(removeDuplicatesFromString(string)) >= 2 and len(string) == 4:
-
-    lowToHi.replace('0', '')
-
-    result = str(int(hiToLow) - int(lowToHi))
-    while len(result) != 4:
-        result = result + '0'
-"""
+ws.title = 'All magicNumbers Organized by Steps'
 
 def removeDuplicatesFromString(string):
     result = ''
@@ -43,10 +41,8 @@ def takeAStep(numberToStep):
     while len(result) != 4:
         result = result + '0'
 
-    print(result)
+    stepInfo.append(result)
     return result    
-
-information = [0, 0, 0, 0, 0, 0, 0, 0]
 
 def stepUntilGoalReached(numberToStep):
     step = 0
@@ -56,11 +52,11 @@ def stepUntilGoalReached(numberToStep):
     
     print(f"Your magicNumber {magicNumber} took {step} steps to reach 6174.")
     information[step] += 1
-    ws.cell(row=information[step], column=step + 1).value = f"{magicNumber}"
+    ws.cell(row = information[step], column = step + 1).value = f"{magicNumber}"
 
     return numberToStep
 
-while magicNumber <= 7000:
+while magicNumber <= 9999:
     magicNumber = 1000 + cycles 
 
     if isAMagicNumber(magicNumber):
@@ -69,6 +65,16 @@ while magicNumber <= 7000:
     cycles += 1 
 
 print(information)
+#print(Counter(stepInfo).most_common())
+
+test = collections.Counter(stepInfo)#.most_common()
+
+print('The following section hilights all the numbers reaced after every step')
+#for value in test:
+#    print(f'{value} : {test[value]}')
+
+for letter, count in test.most_common(): 
+    print(f'{letter} : {count}')
 
 # Save the file
 wb.save("AllTheMagicNumbers.xlsx")
